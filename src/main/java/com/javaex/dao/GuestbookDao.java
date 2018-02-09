@@ -19,10 +19,23 @@ public class GuestbookDao {
 	}
 	
 	public int insertGuestbook(GuestbookVo guestbookVo){ 
-		return sqlSession.insert("guestbook.insert", guestbookVo);
+		System.out.println("selectKey 실행전" + guestbookVo.toString());
+		sqlSession.insert("guestbook.insert", guestbookVo);
+		System.out.println("selectKey 실행후" + guestbookVo.toString());
+		return guestbookVo.getNo();
 	}
 	
 	public int deleteGuestbook(GuestbookVo guestbookVo){ 
 		return sqlSession.delete("guestbook.delete", guestbookVo);
 	}
+	
+	
+	public List<GuestbookVo> selectGuestbookListPage(int page){
+		return sqlSession.selectList("guestbook.selectListByPage", page);
+	}
+	
+	public GuestbookVo selectGuestBook(int no){
+		return sqlSession.selectOne("guestbook.selectGuestBook", no);	
+	}
+	
 }

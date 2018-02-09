@@ -25,5 +25,16 @@ public class GuestbookService {
 	public int remove(GuestbookVo guestbookVo){
 		return guestbookDao.deleteGuestbook(guestbookVo);
 	}
+	
+	public List<GuestbookVo> getGuestbookListPage(int page){
+		return guestbookDao.selectGuestbookListPage(page);
+	}
+	
+	/*ajax*/
+	public GuestbookVo writeGetVo(GuestbookVo guestbookVo) {
+		int no = guestbookDao.insertGuestbook(guestbookVo);
+		return guestbookDao.selectGuestBook(no);
+		
+	}
 
 }

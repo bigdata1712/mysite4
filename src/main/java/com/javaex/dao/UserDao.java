@@ -34,6 +34,10 @@ public class UserDao {
 		return userVo;
 	}
 	
+	public UserVo selectUser(String email) {
+		UserVo userVo = sqlSession.selectOne("user.selectUserByEmail", email); 
+		return userVo;
+	}
 	
 	public int updateUser(UserVo userVo) {
 		return sqlSession.update("user.update", userVo);

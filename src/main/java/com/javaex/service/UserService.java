@@ -27,6 +27,18 @@ public class UserService {
 		return userDao.selectUser(no);
 	}
 	
+	public boolean emailCheck(String email) {
+		boolean result; 
+		UserVo userVo = userDao.selectUser(email);
+		
+		if(userVo != null) {
+			result = false;
+		} else {
+			result = true;
+		}
+		return result;
+	}
+	
 	public int modifyUser(UserVo userVo) {
 		return userDao.updateUser(userVo);
 	}
